@@ -101,6 +101,8 @@ public class PathFindingOnSquaredGrid {
                 if (a[i][j] == which)
                 	if ((i == x1 && j == y1) ||(i == x2 && j == y2)) {
                 		StdDraw.circle(j, N-i-1, .5);
+                                
+                                
                 	}
                 	else StdDraw.square(j, N-i-1, .5);
                 else StdDraw.filledSquare(j, N-i-1, .5);
@@ -123,7 +125,7 @@ public class PathFindingOnSquaredGrid {
     	
     	// The following will generate a 10x10 squared grid with relatively few obstacles in it
     	// The lower the second parameter, the more obstacles (black cells) are generated
-    	boolean[][] randomlyGenMatrix = random(10, 0.4);
+    	boolean[][] randomlyGenMatrix = random(10, 0.9);
     	
     	StdArrayIO.print(randomlyGenMatrix);
     	show(randomlyGenMatrix, true);
@@ -164,6 +166,11 @@ public class PathFindingOnSquaredGrid {
         // System.out.println("Coordinates for B: [" + Bi + "," + Bj + "]");
         
         show(randomlyGenMatrix, true, Ai, Aj, Bi, Bj);
+        StdDraw.setPenColor(StdDraw.BLUE);
+        for(int i = 0;i<10;i++){
+            StdDraw.filledSquare(i,randomlyGenMatrix.length-i-1,0.5);;
+        }
+       
     }
 
 }
