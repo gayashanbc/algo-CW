@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 /*
@@ -18,6 +19,7 @@ public class PathFinder {
 
     /**
      * Retraces the path from startNode to the endNode
+     *
      * @param startNode begin
      * @param endNode destination
      * @param gridSize size of the node grid
@@ -31,7 +33,7 @@ public class PathFinder {
             path.add(currentNode);
             currentNode = currentNode.parent;
         }
-        
+       // Collections.reverse(path);
         // visualize the traced path on the grid
         StdDraw.setPenColor(StdDraw.BLUE);
         for (int i = 1; i < path.size(); i++) {
@@ -114,27 +116,31 @@ public class PathFinder {
     public void findPath(Node startNode, Node endNode, Node[][] grid) {
         int gridSize = grid.length;
 
-        List<Node> openSet = new ArrayList<Node>(); // nodes to be evaluated
-        HashSet<Node> closedSet = new HashSet<Node>(); // nodes that are already evaluated
+        //List<Node> openSet = new ArrayList<Node>(); 
+        // nodes to be evaluated
+        // this queue will prioritize nodes based on the lowest f_cost
+        PriorityQueue<Node> openSet = new PriorityQueue<>(gridSize * gridSize, new NodeComparator());
+        HashSet<Node> closedSet = new HashSet<>(); // nodes that are already evaluated
 
         openSet.add(startNode); // initially the open set will only have the startNode
 
         while (!openSet.isEmpty()) { // evaluating each node in open set
-            Node currentNode = openSet.get(0); // the node with lowest f_cost, initially the first element
+            //Node currentNode = openSet.get(0);
+            Node currentNode = openSet.poll(); // the node with lowest f_cost, initially the first element
 
             // iteration starts from the 2nd node 
             // since the first element is currently the currentNode
-            for (int i = 1; i < openSet.size(); i++) {
-                if (openSet.get(i).f_cost() < currentNode.f_cost() // select the one with lowest f_cost
-
-                        // select the one with lowest h_cost if the f_cost is equal
-                        || openSet.get(i).f_cost() == currentNode.f_cost()
-                        && openSet.get(i).h_cost < currentNode.h_cost) {
-                    currentNode = openSet.get(i);
-                }
-            }
-
-            openSet.remove(currentNode);
+//            for (int i = 1; i < openSet.size(); i++) {
+//                if (openSet.get(i).f_cost() < currentNode.f_cost() // select the one with lowest f_cost
+//
+//                        // select the one with lowest h_cost if the f_cost is equal
+//                        || openSet.get(i).f_cost() == currentNode.f_cost()
+//                        && openSet.get(i).h_cost < currentNode.h_cost) {
+//                    currentNode = openSet.get(i);
+//                }
+//            }
+//
+//            openSet.remove(currentNode);
             closedSet.add(currentNode);
 
             if (currentNode == endNode) { // destination node is found
@@ -233,7 +239,7 @@ public class PathFinder {
     }
 
     public static void main(String[] args) {
-        Node[][] randommGrid = random(20, 0.9);
+        Node[][] randommGrid = random(100, .4);
         printGrid(randommGrid);
         showGrid(randommGrid, true);
 

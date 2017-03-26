@@ -125,7 +125,7 @@ public class PathFindingOnSquaredGrid {
     	
     	// The following will generate a 10x10 squared grid with relatively few obstacles in it
     	// The lower the second parameter, the more obstacles (black cells) are generated
-    	boolean[][] randomlyGenMatrix = random(10, 0.9);
+    	boolean[][] randomlyGenMatrix = random(10, 1);
     	
     	StdArrayIO.print(randomlyGenMatrix);
     	show(randomlyGenMatrix, true);

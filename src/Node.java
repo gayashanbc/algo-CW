@@ -8,7 +8,7 @@
  *
  * @author Shan
  */
-public class Node {
+public class Node  {
 
     public boolean isTraversable;
     public int position_X;
@@ -26,5 +26,6 @@ public class Node {
     public int f_cost() {
         return g_cost + h_cost;
     }
+
 
 }
