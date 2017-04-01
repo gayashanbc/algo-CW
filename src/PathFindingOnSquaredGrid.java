@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import javax.swing.SwingUtilities;
 
 /*************************************************************************
  *  Author: Dr E Kapetanios
@@ -128,7 +129,9 @@ public class PathFindingOnSquaredGrid {
     	boolean[][] randomlyGenMatrix = random(10, 1);
     	
     	StdArrayIO.print(randomlyGenMatrix);
-    	show(randomlyGenMatrix, true);
+
+SwingUtilities.invokeLater(()->    	show(randomlyGenMatrix, true));
+SwingUtilities.invokeLater(()->    	show(randomlyGenMatrix, true));
     	
     	System.out.println();
     	System.out.println("The system percolates: " + percolates(randomlyGenMatrix));
