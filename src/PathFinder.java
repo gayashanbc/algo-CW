@@ -185,30 +185,6 @@ public class PathFinder {
                         break;
                 }
 
-                // bypass edges of 2 diagonally connected blocked cells
-                if (distanceMetric == 'C' || distanceMetric == 'E') {
-                    try {
-                        if ((x == -1 && y == -1)
-                                && !getNode(-1 + node.position_X, node.position_Y, grid).isTraversable
-                                && !getNode(node.position_X, -1 + node.position_Y, grid).isTraversable) {
-                            continue;
-                        } else if ((x == 1 && y == -1)
-                                && !getNode(node.position_X, -1 + node.position_Y, grid).isTraversable
-                                && !getNode(1 + node.position_X, node.position_Y, grid).isTraversable) {
-                            continue;
-                        } else if ((x == 1 && y == 1)
-                                && !getNode(1 + node.position_X, node.position_Y, grid).isTraversable
-                                && !getNode(node.position_X, 1 + node.position_Y, grid).isTraversable) {
-                            continue;
-                        } else if ((x == -1 && y == 1)
-                                && !getNode(-1 + node.position_X, node.position_Y, grid).isTraversable
-                                && !getNode(node.position_X, 1 + node.position_Y, grid).isTraversable) {
-                            continue;
-                        }
-                    } catch (NullPointerException e) {
-                        //thrown when a particular node is out of grid range
-                    }
-                }
                 // to check whether the actual position is in range of the grid by adding the hypothetical positin it
                 int check_X = node.position_X + x;
                 int check_Y = node.position_Y + y;
